@@ -7,6 +7,8 @@
 ![License](https://img.shields.io/badge/license-Free-orange)
 ![Privacy](https://img.shields.io/badge/privacy-100%25%20Local-red)
 
+**🌐 Live Website:** [https://sanatandoshsarni.tiiny.site/](https://sanatandoshsarni.tiiny.site/)
+
 ---
 
 ## 📖 Quick Links
@@ -39,9 +41,9 @@ This app helps you become more **self-aware**, make **better decisions**, and **
 ## ⚡ Quick Start
 
 ### 1. Open the App
-- Double-click `index.html`
+- **Online:** Visit [https://sanatandoshsarni.tiiny.site/](https://sanatandoshsarni.tiiny.site/)
+- **Offline:** Double-click `index.html`
 - Works on any device (phone, tablet, computer)
-- No installation needed!
 
 ### 2. Log Your First Mistake
 - Click **"WRONG THINGS"** tab
