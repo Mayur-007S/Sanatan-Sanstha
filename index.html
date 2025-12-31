@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="mr">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Swabhav Dosh Sarni - Sanatan Sanstha</title>
+    <title>स्वभाव दोष सारणी - सनातन साधना</title>
     <meta name="description"
-        content="A tool for self-introspection and personality defect removal, inspired by Sanatan Sanstha. Log mistakes, take decisions, and observe transformation.">
+        content="सनातन संस्थेच्या शिकवणीवर आधारित स्वभाव दोष निर्मूलन प्रक्रियेसाठी उपयुक्त साधन. चुका नोंदवा, योग्य निर्णय घ्या आणि स्वतःमधील परिवर्तन अनुभवा.">
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- XLSX library removed from sync load to improve performance -->
     <style>
@@ -14,7 +14,7 @@
 
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: #f8fafc;
+            background-color: #efefef;
         }
 
         .nav-primary {
@@ -69,8 +69,8 @@
         }
 
         .nav-link.active-tab {
-            border-bottom: 2px solid #2563eb;
-            color: #1e40af;
+            border-bottom: 2px solid #fc3400;
+            color: #fc3400;
         }
 
         /* Custom Multi-Select Dropdown */
@@ -205,6 +205,18 @@
         .multi-select-option.hidden {
             display: none;
         }
+
+        /* Fix for tiiny.host banner blocking content on mobile */
+        @media (max-width: 768px) {
+            body {
+                padding-bottom: 80px;
+            }
+
+            /* Move toast up slightly on mobile so it clears the banner */
+            #toast {
+                bottom: 70px !important;
+            }
+        }
     </style>
 </head>
 
@@ -215,7 +227,7 @@
     <nav class="nav-primary border-b border-orange-100 py-4 px-6 sticky top-0 z-50 shadow-sm">
         <div class="max-w-6xl mx-auto flex justify-between items-center">
             <div class="w-10"></div>
-            <h1 class="text-2xl font-bold text-orange-800 tracking-wide uppercase notranslate">Sanatan Sanstha</h1>
+            <h1 class="text-2xl font-bold text-orange-800 tracking-wide uppercase notranslate">सनातन साधना</h1>
             <button id="menuBtn" class="p-2 hover:bg-orange-200/50 rounded-full transition-colors"
                 aria-label="Open Menu">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
@@ -233,9 +245,10 @@
         <div class="max-w-6xl mx-auto overflow-x-auto hide-scrollbar flex justify-start md:justify-center">
             <ul
                 class="flex items-center gap-8 px-6 py-3 whitespace-nowrap text-[11px] md:text-xs font-bold text-blue-800 uppercase tracking-wider">
-                <li id="nav-wrong" class="nav-link cursor-pointer transition-colors pb-0.5 active-tab">Wrong Things</li>
-                <li id="nav-decision" class="nav-link cursor-pointer transition-colors pb-0.5">Right Decision</li>
-                <li id="nav-results" class="nav-link cursor-pointer transition-colors pb-0.5">Results</li>
+                <li id="nav-wrong" class="nav-link cursor-pointer transition-colors pb-0.5 active-tab">अयोग्य कृती / दोष
+                </li>
+                <li id="nav-decision" class="nav-link cursor-pointer transition-colors pb-0.5">योग्य निर्णय</li>
+                <li id="nav-results" class="nav-link cursor-pointer transition-colors pb-0.5">परिणाम / साध्य</li>
             </ul>
         </div>
     </nav>
@@ -246,7 +259,7 @@
         <div
             class="bg-white w-full max-w-sm rounded-3xl shadow-2xl relative z-10 overflow-hidden transform scale-95 transition-transform duration-200">
             <div class="p-6 border-b border-slate-100 flex justify-between items-center">
-                <h3 class="text-lg font-bold">Menu</h3>
+                <h3 class="text-lg font-bold">मेनू</h3>
                 <button id="closeModal" class="text-slate-400 hover:text-slate-600">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                         stroke-width="2.5">
@@ -257,16 +270,16 @@
             </div>
             <div class="p-4 space-y-2">
                 <div class="p-4 rounded-2xl bg-slate-50 border border-slate-100 mb-2">
-                    <label for="langSelect" class="block text-[10px] font-bold text-slate-600 uppercase mb-2">Select
-                        Language</label>
+                    <label for="langSelect" class="block text-[10px] font-bold text-slate-600 uppercase mb-2">भाषा
+                        निवडा</label>
                     <select id="langSelect"
                         class="w-full bg-white border border-slate-200 rounded-xl p-3 text-sm outline-none font-medium">
+                        <option value="mr" selected>मराठी</option>
                         <option value="en">English</option>
-                        <option value="hi">Hindi (हिन्दी)</option>
-                        <option value="mr">Marathi (मराठी)</option>
-                        <option value="gu">Gujarati (ગુજરાતી)</option>
-                        <option value="kn">Kannada (ಕನ್ನಡ)</option>
-                        <option value="ta">Tamil (தமிழ்)</option>
+                        <option value="hi">हिन्दी</option>
+                        <option value="gu">ગુજરાતી</option>
+                        <option value="kn">ಕನ್ನಡ</option>
+                        <option value="ta">தமிழ்</option>
                     </select>
                 </div>
                 <button id="exportAllBtn"
@@ -274,25 +287,25 @@
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" />
                     </svg>
-                    Export All Data (Excel)
+                    सर्व माहिती एक्सपोर्ट करा (Excel)
                 </button>
                 <div class="mt-4 p-4 rounded-2xl bg-red-50 border border-red-100">
-                    <h4 class="text-xs font-bold text-red-600 uppercase mb-2">Help & Feedback / मदत आणि अभिप्राय</h4>
+                    <h4 class="text-xs font-bold text-red-600 uppercase mb-2">मदत आणि अभिप्राय</h4>
                     <p class="text-xs text-slate-700 mb-3 leading-relaxed font-medium">
-                        Facing an issue? Just answer these 3 simple things in your email:
+                        काही समस्या येत आहे? ईमेलमध्ये या ३ सोप्या प्रश्नांची उत्तरे द्या:
                     </p>
                     <div class="text-[10px] space-y-2 text-slate-600 mb-4 bg-white p-3 rounded-xl border border-red-50">
                         <div>
-                            <p class="font-bold text-slate-800">1. What went wrong? (काय अडचण आली?)</p>
-                            <p class="text-[9px] text-slate-500">Ex: "The save button is not working."</p>
+                            <p class="font-bold text-slate-800">१. काय अडचण आली?</p>
+                            <p class="text-[9px] text-slate-500">उदा: "सेव्ह बटन काम करत नाहीये."</p>
                         </div>
                         <div>
-                            <p class="font-bold text-slate-800">2. Which phone/PC? (कोणता फोन वापरताय?)</p>
-                            <p class="text-[9px] text-slate-500">Ex: "Samsung phone" or "iPhone"</p>
+                            <p class="font-bold text-slate-800">२. कोणता फोन / संगणक वापरताय?</p>
+                            <p class="text-[9px] text-slate-500">उदा: "सॅमसंग" किंवा "आयफोन"</p>
                         </div>
                         <div>
-                            <p class="font-bold text-slate-800">3. Attach a Screenshot (शक्य असल्यास फोटो पाठवा)</p>
-                            <p class="text-[9px] text-slate-500 italic">This helps us fix it 10x faster!</p>
+                            <p class="font-bold text-slate-800">३. शक्य असल्यास फोटो (Screenshot) जोडा</p>
+                            <p class="text-[9px] text-slate-500 italic">यामुळे आम्ही समस्या १० पट वेगाने सोडवू शकतो!</p>
                         </div>
                     </div>
                     <div class="flex flex-col gap-2">
@@ -303,7 +316,7 @@
                                 <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
                                 <polyline points="22,6 12,13 2,6" />
                             </svg>
-                            Open in Mail App (ॲपमध्ये उघडा)
+                            मेल ॲपमध्ये उघडा
                         </a>
                         <a target="_blank"
                             href="https://mail.google.com/mail/?view=cm&fs=1&to=mayurmyana111@gmail.com&su=Problem%20Report%20-%20Sanatan%20App&body=Hello%20Mayur,%0A%0AI%20found%20an%20issue%20in%20the%20app:%0A%0A1.%20What%20happened?%20(काय%20झाले?):%20%0A%0A2.%20I%20am%20using%20this%20phone/computer%20(मी%20हा%20फोन%20वापरत%20आहे):%20%0A%0A(Please%20attach%20a%20photo%20if%20possible%20/%20शक्य%20असल्यास%20फोटो%20जोडा)%0A"
@@ -312,13 +325,13 @@
                                 stroke-width="2.5">
                                 <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
                             </svg>
-                            Open in Chrome / Browser
+                            क्रोम मध्ये उघडा
                         </a>
                     </div>
                 </div>
             </div>
             <div class="bg-slate-50 p-4 text-center">
-                <p class="text-[10px] text-slate-600 font-bold uppercase tracking-widest notranslate">Version 1.8.5</p>
+                <p class="text-[10px] text-slate-600 font-bold uppercase tracking-widest notranslate">आवृत्ती 1.8.5</p>
             </div>
         </div>
     </div>
@@ -327,272 +340,270 @@
         <!-- WRONG THINGS PAGE -->
         <div id="page-wrong" class="page-content active max-w-6xl mx-auto px-4 py-8">
             <header class="mb-8">
-                <h2 class="text-2xl font-extrabold tracking-tight text-slate-900 notranslate">Wrong Things Log</h2>
-                <p class="text-slate-600 text-sm italic">"Introspection is the first step toward purity."</p>
+                <h2 class="text-2xl font-extrabold tracking-tight text-slate-900 notranslate">स्वभाव दोष नोंद</h2>
+                <p class="text-slate-600 text-sm italic">"आत्मनिरीक्षण हे शुद्धतेचे पहिले पाऊल आहे."</p>
             </header>
             <div class="grid lg:grid-cols-12 gap-8">
                 <div class="lg:col-span-4">
                     <div class="bg-white px-6 pt-6 pb-8 rounded-3xl shadow-xl border border-slate-100 h-fit">
                         <h2 class="text-lg font-bold mb-5 flex items-center gap-2">
-                            <span class="w-2 h-6 bg-red-500 rounded-full"></span> Log Mistake
+                            <span class="w-2 h-6 bg-red-500 rounded-full"></span> चूक नोंदवा
                         </h2>
                         <form id="wrongForm" class="space-y-4">
                             <input type="hidden" id="wrongEditId">
                             <div class="grid grid-cols-2 gap-4">
                                 <div>
                                     <label for="wrongDateInput"
-                                        class="block text-xs font-bold text-slate-600 uppercase mb-1.5">Date</label>
+                                        class="block text-xs font-bold text-slate-600 uppercase mb-1.5">दिनांक</label>
                                     <input type="date" id="wrongDateInput" required
                                         class="w-full rounded-xl border-slate-200 bg-slate-50 p-3 border text-sm focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none">
                                 </div>
                                 <div>
                                     <label for="wrongTimeInput"
-                                        class="block text-xs font-bold text-slate-600 uppercase mb-1.5">Time</label>
+                                        class="block text-xs font-bold text-slate-600 uppercase mb-1.5">कालावधी</label>
                                     <input type="text" id="wrongTimeInput" required placeholder="HH:MM"
                                         class="w-full rounded-xl border-slate-200 bg-slate-50 p-3 border text-sm focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none">
                                 </div>
                             </div>
                             <div>
-                                <label class="block text-xs font-bold text-slate-600 uppercase mb-1.5">Personality
-                                    Defects
-                                    (Dosh) - Select Multiple</label>
+                                <label class="block text-xs font-bold text-slate-600 uppercase mb-1.5">स्वभाव दोष
+                                    - एकापेक्षा जास्त निवडू शकता</label>
 
                                 <div class="multi-select-container">
                                     <div id="doshTrigger"
                                         class="multi-select-trigger w-full rounded-xl border-slate-200 bg-slate-50 border focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none">
-                                        <span class="multi-select-placeholder">Click to select defects...</span>
+                                        <span class="multi-select-placeholder">स्वभाव दोष निवडा...</span>
                                     </div>
 
                                     <div id="doshDropdown" class="multi-select-dropdown">
                                         <div class="multi-select-search">
-                                            <input type="text" id="doshSearch" placeholder="🔍 Search defects..."
+                                            <input type="text" id="doshSearch" placeholder="🔍 दोष शोधा..."
                                                 autocomplete="off">
                                         </div>
 
                                         <div class="multi-select-options" id="doshOptions">
-                                            <div class="multi-select-group-label">The Six Foes (Shadripu / षड्रिपू)
+                                            <div class="multi-select-group-label">षड्रिपू
                                             </div>
                                             <div class="multi-select-option" data-value="Desire (Kama)"
                                                 data-group="shadripu">
-                                                <input type="checkbox" id="dosh_desire" value="Desire (Kama)">
-                                                <label for="dosh_desire">Desire / Lust (काम)</label>
+                                                <input type="checkbox" id="dosh_desire" value="काम (Desire)">
+                                                <label for="dosh_desire">काम</label>
                                             </div>
                                             <div class="multi-select-option" data-value="Anger (Krodha)"
                                                 data-group="shadripu">
-                                                <input type="checkbox" id="dosh_anger" value="Anger (Krodha)">
-                                                <label for="dosh_anger">Anger (क्रोध / राग)</label>
+                                                <input type="checkbox" id="dosh_anger" value="क्रोध (Anger)">
+                                                <label for="dosh_anger">क्रोध / राग</label>
                                             </div>
                                             <div class="multi-select-option" data-value="Greed (Lobha)"
                                                 data-group="shadripu">
-                                                <input type="checkbox" id="dosh_greed" value="Greed (Lobha)">
-                                                <label for="dosh_greed">Greed (लोभ)</label>
+                                                <input type="checkbox" id="dosh_greed" value="लोभ (Greed)">
+                                                <label for="dosh_greed">लोभ</label>
                                             </div>
                                             <div class="multi-select-option" data-value="Attachment (Moha)"
                                                 data-group="shadripu">
-                                                <input type="checkbox" id="dosh_attachment" value="Attachment (Moha)">
-                                                <label for="dosh_attachment">Attachment / Delusion (मोह)</label>
+                                                <input type="checkbox" id="dosh_attachment" value="मोह (Attachment)">
+                                                <label for="dosh_attachment">मोह</label>
                                             </div>
                                             <div class="multi-select-option" data-value="Arrogance (Mada)"
                                                 data-group="shadripu">
-                                                <input type="checkbox" id="dosh_arrogance" value="Arrogance (Mada)">
-                                                <label for="dosh_arrogance">Arrogance (मद / ताठा)</label>
+                                                <input type="checkbox" id="dosh_arrogance"
+                                                    value="मद / ताठा (Arrogance)">
+                                                <label for="dosh_arrogance">मद / ताठा</label>
                                             </div>
                                             <div class="multi-select-option" data-value="Jealousy (Matsarya)"
                                                 data-group="shadripu">
-                                                <input type="checkbox" id="dosh_jealousy" value="Jealousy (Matsarya)">
-                                                <label for="dosh_jealousy">Jealousy / Envy (मत्सर / द्वेष)</label>
+                                                <input type="checkbox" id="dosh_jealousy"
+                                                    value="मत्सर / द्वेष (Jealousy)">
+                                                <label for="dosh_jealousy">मत्सर / द्वेष</label>
                                             </div>
 
-                                            <div class="multi-select-group-label">Defects Affecting Others (इतरांना
-                                                त्रासदायक)</div>
+                                            <div class="multi-select-group-label">इतरांना त्रासदायक</div>
                                             <div class="multi-select-option" data-value="Short-tempered"
                                                 data-group="affecting-others">
                                                 <input type="checkbox" id="dosh_shorttempered" value="Short-tempered">
-                                                <label for="dosh_shorttempered">Short-tempered (शीघ्रकोपीपणा)</label>
+                                                <label for="dosh_shorttempered">शीघ्रकोपीपणा</label>
                                             </div>
                                             <div class="multi-select-option" data-value="Irritable"
                                                 data-group="affecting-others">
                                                 <input type="checkbox" id="dosh_irritable" value="Irritable">
-                                                <label for="dosh_irritable">Irritable (चिडखोरपणा)</label>
+                                                <label for="dosh_irritable">चिडखोरपणा</label>
                                             </div>
                                             <div class="multi-select-option" data-value="Quarrelsome"
                                                 data-group="affecting-others">
                                                 <input type="checkbox" id="dosh_quarrelsome" value="Quarrelsome">
-                                                <label for="dosh_quarrelsome">Quarrelsome (भांडखोरपणा)</label>
+                                                <label for="dosh_quarrelsome">भांडखोरपणा</label>
                                             </div>
                                             <div class="multi-select-option" data-value="Destructive"
                                                 data-group="affecting-others">
                                                 <input type="checkbox" id="dosh_destructive" value="Destructive">
-                                                <label for="dosh_destructive">Destructive (विध्वंसकवृत्ती)</label>
+                                                <label for="dosh_destructive">विध्वंसकवृत्ती</label>
                                             </div>
                                             <div class="multi-select-option" data-value="Looking down upon others"
                                                 data-group="affecting-others">
                                                 <input type="checkbox" id="dosh_lookingdown"
                                                     value="Looking down upon others">
-                                                <label for="dosh_lookingdown">Looking down upon others (दुसऱ्याला तुच्छ
-                                                    लेखणे)</label>
+                                                <label for="dosh_lookingdown">दुसऱ्याला तुच्छ
+                                                    लेखणे</label>
                                             </div>
                                             <div class="multi-select-option" data-value="Pointing mistakes of others"
                                                 data-group="affecting-others">
                                                 <input type="checkbox" id="dosh_pointing"
                                                     value="Pointing mistakes of others">
-                                                <label for="dosh_pointing">Pointing mistakes of others (इतरांच्या चुका
-                                                    शोधणे)</label>
+                                                <label for="dosh_pointing">इतरांच्या चुका
+                                                    शोधणे</label>
                                             </div>
                                             <div class="multi-select-option" data-value="Criticism"
                                                 data-group="affecting-others">
                                                 <input type="checkbox" id="dosh_criticism" value="Criticism">
-                                                <label for="dosh_criticism">Criticizing others (टीका करणे)</label>
+                                                <label for="dosh_criticism">टीका करणे</label>
                                             </div>
 
-                                            <div class="multi-select-group-label">Defects Affecting Self (स्वतःसाठी
-                                                त्रासदायक)</div>
+                                            <div class="multi-select-group-label">स्वतःसाठी त्रासदायक</div>
                                             <div class="multi-select-option" data-value="Egoistic"
                                                 data-group="affecting-self">
                                                 <input type="checkbox" id="dosh_egoistic" value="Egoistic">
-                                                <label for="dosh_egoistic">Egoistic / Pride (अहंकार / गर्व)</label>
+                                                <label for="dosh_egoistic">अहंकार / गर्व</label>
                                             </div>
                                             <div class="multi-select-option" data-value="Emotional"
                                                 data-group="affecting-self">
                                                 <input type="checkbox" id="dosh_emotional" value="Emotional">
-                                                <label for="dosh_emotional">Emotionalism (भावविवशता)</label>
+                                                <label for="dosh_emotional">भावविवशता</label>
                                             </div>
                                             <div class="multi-select-option" data-value="Fearful"
                                                 data-group="affecting-self">
                                                 <input type="checkbox" id="dosh_fearful" value="Fearful">
-                                                <label for="dosh_fearful">Fearful / Fear (भीती)</label>
+                                                <label for="dosh_fearful">भीती</label>
                                             </div>
                                             <div class="multi-select-option" data-value="Lying / Dishonesty"
                                                 data-group="affecting-self">
                                                 <input type="checkbox" id="dosh_lying" value="Lying / Dishonesty">
-                                                <label for="dosh_lying">Lying / Dishonesty (खोटे बोलणे /
-                                                    अप्रामाणिकपणा)</label>
+                                                <label for="dosh_lying">खोटे बोलणे /
+                                                    अप्रामाणिकपणा</label>
                                             </div>
                                             <div class="multi-select-option" data-value="Suspicious"
                                                 data-group="affecting-self">
                                                 <input type="checkbox" id="dosh_suspicious" value="Suspicious">
-                                                <label for="dosh_suspicious">Suspicious (संशयीवृत्ती)</label>
+                                                <label for="dosh_suspicious">संशयीवृत्ती</label>
                                             </div>
                                             <div class="multi-select-option" data-value="Ungrateful"
                                                 data-group="affecting-self">
                                                 <input type="checkbox" id="dosh_ungrateful" value="Ungrateful">
-                                                <label for="dosh_ungrateful">Ungrateful (कृतघ्नपणा)</label>
+                                                <label for="dosh_ungrateful">कृतघ्नपणा</label>
                                             </div>
                                             <div class="multi-select-option" data-value="No repentance"
                                                 data-group="affecting-self">
                                                 <input type="checkbox" id="dosh_norepentance" value="No repentance">
-                                                <label for="dosh_norepentance">Lack of repentance (पश्चात्ताप न
-                                                    होणे)</label>
+                                                <label for="dosh_norepentance">पश्चात्ताप न
+                                                    होणे</label>
                                             </div>
                                             <div class="multi-select-option" data-value="Lack of seriousness"
                                                 data-group="affecting-self">
                                                 <input type="checkbox" id="dosh_lackseriousness"
                                                     value="Lack of seriousness">
-                                                <label for="dosh_lackseriousness">Lack of seriousness (गांभीर्याचा
-                                                    अभाव)</label>
+                                                <label for="dosh_lackseriousness">गांभीर्याचा
+                                                    अभाव</label>
                                             </div>
                                             <div class="multi-select-option" data-value="Lack of planning"
                                                 data-group="affecting-self">
                                                 <input type="checkbox" id="dosh_lackplanning" value="Lack of planning">
-                                                <label for="dosh_lackplanning">Lack of planning (नियोजनाचा अभाव)</label>
+                                                <label for="dosh_lackplanning">नियोजनाचा अभाव</label>
                                             </div>
                                             <div class="multi-select-option" data-value="Forgetful"
                                                 data-group="affecting-self">
                                                 <input type="checkbox" id="dosh_forgetful" value="Forgetful">
-                                                <label for="dosh_forgetful">Forgetful (विसरभोळेपणा)</label>
+                                                <label for="dosh_forgetful">विसरभोळेपणा</label>
                                             </div>
 
-                                            <div class="multi-select-group-label">Operational & Behavioral (कृती आणि
-                                                वर्तन)</div>
+                                            <div class="multi-select-group-label">कृती आणि वर्तन</div>
                                             <div class="multi-select-option" data-value="Laziness"
                                                 data-group="behavioral">
                                                 <input type="checkbox" id="dosh_laziness" value="Laziness">
-                                                <label for="dosh_laziness">Laziness (आळस)</label>
+                                                <label for="dosh_laziness">आळस</label>
                                             </div>
                                             <div class="multi-select-option" data-value="Hasty" data-group="behavioral">
                                                 <input type="checkbox" id="dosh_hasty" value="Hasty">
-                                                <label for="dosh_hasty">Hasty / Impatient (घाईघाईने करणे /
-                                                    उतावळेपणा)</label>
+                                                <label for="dosh_hasty">घाईघाईने करणे /
+                                                    उतावळेपणा</label>
                                             </div>
                                             <div class="multi-select-option" data-value="Carelessness"
                                                 data-group="behavioral">
                                                 <input type="checkbox" id="dosh_carelessness" value="Carelessness">
-                                                <label for="dosh_carelessness">Carelessness (निष्काळजीपणा)</label>
+                                                <label for="dosh_carelessness">निष्काळजीपणा</label>
                                             </div>
                                             <div class="multi-select-option" data-value="Irresponsible"
                                                 data-group="behavioral">
                                                 <input type="checkbox" id="dosh_irresponsible" value="Irresponsible">
-                                                <label for="dosh_irresponsible">Irresponsible (बेजबाबदारपणा)</label>
+                                                <label for="dosh_irresponsible">बेजबाबदारपणा</label>
                                             </div>
                                             <div class="multi-select-option" data-value="Disobedience"
                                                 data-group="behavioral">
                                                 <input type="checkbox" id="dosh_disobedience" value="Disobedience">
-                                                <label for="dosh_disobedience">Disobedience (अवज्ञा करणे)</label>
+                                                <label for="dosh_disobedience">अवज्ञा करणे</label>
                                             </div>
                                             <div class="multi-select-option" data-value="Talking unnecessarily"
                                                 data-group="behavioral">
                                                 <input type="checkbox" id="dosh_talking" value="Talking unnecessarily">
-                                                <label for="dosh_talking">Talking unnecessarily (विनाकारण बोलणे)</label>
+                                                <label for="dosh_talking">विनाकारण बोलणे</label>
                                             </div>
                                             <div class="multi-select-option" data-value="Narrow-mindedness"
                                                 data-group="behavioral">
                                                 <input type="checkbox" id="dosh_narrowminded" value="Narrow-mindedness">
-                                                <label for="dosh_narrowminded">Narrow-minded (संकुचितवृत्ती)</label>
+                                                <label for="dosh_narrowminded">संकुचितवृत्ती</label>
                                             </div>
                                             <div class="multi-select-option" data-value="Poor decision making"
                                                 data-group="behavioral">
                                                 <input type="checkbox" id="dosh_poordecision"
                                                     value="Poor decision making">
-                                                <label for="dosh_poordecision">Poor decision making (निर्णयक्षमतेचा
-                                                    अभाव)</label>
+                                                <label for="dosh_poordecision">निर्णयक्षमतेचा
+                                                    अभाव</label>
                                             </div>
                                             <div class="multi-select-option" data-value="Lacking confidence"
                                                 data-group="behavioral">
                                                 <input type="checkbox" id="dosh_lackconfidence"
                                                     value="Lacking confidence">
-                                                <label for="dosh_lackconfidence">Lacking confidence (आत्मविश्वासाचा
-                                                    अभाव)</label>
+                                                <label for="dosh_lackconfidence">आत्मविश्वासाचा
+                                                    अभाव</label>
                                             </div>
                                             <div class="multi-select-option" data-value="Overspending"
                                                 data-group="behavioral">
                                                 <input type="checkbox" id="dosh_overspending" value="Overspending">
-                                                <label for="dosh_overspending">Overspending (उधळपट्टी)</label>
+                                                <label for="dosh_overspending">उधळपट्टी</label>
                                             </div>
                                             <div class="multi-select-option" data-value="Not systematic"
                                                 data-group="behavioral">
                                                 <input type="checkbox" id="dosh_notsystematic" value="Not systematic">
-                                                <label for="dosh_notsystematic">Not being systematic
-                                                    (अव्यवस्थितपणा)</label>
+                                                <label for="dosh_notsystematic">अव्यवस्थितपणा</label>
                                             </div>
 
                                             <div class="multi-select-option" data-value="Others" data-group="other">
-                                                <input type="checkbox" id="dosh_others" value="Others">
-                                                <label for="dosh_others">Others (इतर)</label>
+                                                <input type="checkbox" id="dosh_others" value="इतर (Others)">
+                                                <label for="dosh_others">इतर</label>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <p class="text-[10px] text-slate-500 mt-1.5 italic">💡 Click to open, search, and select
-                                    multiple defects</p>
+                                <p class="text-[10px] text-slate-500 mt-1.5 italic">💡 उघडण्यासाठी क्लिक करा आणि दोष
+                                    निवडा</p>
                             </div>
                             <div>
                                 <label for="wrongThingsInput"
-                                    class="block text-xs font-bold text-slate-600 uppercase mb-1.5">Description</label>
-                                <textarea id="wrongThingsInput" required placeholder="Describe the incident..."
+                                    class="block text-xs font-bold text-slate-600 uppercase mb-1.5">प्रसंग /
+                                    वर्णन</label>
+                                <textarea id="wrongThingsInput" required placeholder="प्रसंगाचे वर्णन लिहा..."
                                     class="w-full rounded-xl border-slate-200 bg-slate-50 p-3 border h-32 resize-none focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none"></textarea>
                             </div>
                             <button type="submit" id="wrongSubmitBtn"
-                                class="w-full bg-slate-900 text-white py-4 rounded-xl hover:bg-red-600 font-bold shadow-lg transition-all hover:-translate-y-1 active:scale-95 mt-2">Save
-                                Mistake</button>
+                                class="w-full bg-slate-900 text-white py-4 rounded-xl hover:bg-red-600 font-bold shadow-lg transition-all hover:-translate-y-1 active:scale-95 mt-2">चूक
+                                जतन करा</button>
                         </form>
                     </div>
                 </div>
                 <div class="lg:col-span-8">
                     <div class="bg-white rounded-3xl shadow-xl border border-slate-100 overflow-hidden">
                         <div class="p-6 border-b border-slate-50 flex justify-between items-center">
-                            <span class="font-bold text-slate-800">History Log</span>
+                            <span class="font-bold text-slate-800">मागील नोंदी</span>
                             <div class="relative w-48">
-                                <input type="text" id="searchWrongLogs" placeholder="Search logs..."
+                                <input type="text" id="searchWrongLogs" placeholder="शोधा..."
                                     class="w-full pl-8 pr-3 py-1.5 text-xs bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-200">
                                 <svg class="w-3.5 h-3.5 text-slate-400 absolute left-2.5 top-2" fill="none"
                                     stroke="currentColor" viewBox="0 0 24 24">
@@ -605,7 +616,8 @@
                             <table class="w-full text-left">
                                 <tbody id="wrongTableBody" class="divide-y divide-slate-50"></tbody>
                             </table>
-                            <div id="wrongEmpty" class="hidden p-20 text-center text-slate-600 italic">No entries yet.
+                            <div id="wrongEmpty" class="hidden p-20 text-center text-slate-600 italic">अद्याप काहीही
+                                नोंद नाही.
                             </div>
                         </div>
                     </div>
@@ -616,24 +628,23 @@
         <!-- DECISION PAGE -->
         <div id="page-decision" class="page-content max-w-6xl mx-auto px-4 py-8">
             <header class="mb-8">
-                <h2 class="text-2xl font-extrabold tracking-tight text-slate-900 notranslate">Right Decision</h2>
-                <p class="text-slate-600 text-sm">Correcting mistakes with awareness</p>
+                <h2 class="text-2xl font-extrabold tracking-tight text-slate-900 notranslate">योग्य निर्णय</h2>
+                <p class="text-slate-600 text-sm">जाणीवपूर्वक चुका सुधारणे</p>
             </header>
             <div class="grid lg:grid-cols-12 gap-8">
                 <div class="lg:col-span-5">
                     <div class="bg-white px-6 pt-6 pb-8 rounded-3xl shadow-xl border border-slate-100 h-fit">
                         <h2 class="text-lg font-bold mb-5 flex items-center gap-2"><span
-                                class="w-2 h-6 bg-blue-600 rounded-full"></span> Document Decision</h2>
+                                class="w-2 h-6 bg-blue-600 rounded-full"></span> निर्णय नोंदवा</h2>
                         <form id="decisionForm" class="space-y-4">
                             <input type="hidden" id="decisionEditId">
                             <div>
                                 <label for="wrongThingSelector"
-                                    class="block text-xs font-bold text-slate-600 uppercase mb-1.5">Select Wrong
-                                    Thing</label>
+                                    class="block text-xs font-bold text-slate-600 uppercase mb-1.5">चूक निवडा</label>
                                 <div class="custom-select-container relative">
                                     <div id="wrongThingTrigger"
                                         class="w-full rounded-xl border-slate-200 bg-slate-50 p-3 border font-medium text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none flex justify-between items-center cursor-pointer min-h-[46px]">
-                                        <span class="text-slate-500">-- Choose from History --</span>
+                                        <span class="text-slate-500">-- मागील नोंदीमधून निवडा --</span>
                                         <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor"
                                             viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -645,7 +656,7 @@
                                     <div id="wrongThingDropdown"
                                         class="hidden absolute z-20 w-full mt-1 bg-white border border-slate-100 rounded-xl shadow-xl max-h-60 overflow-y-auto">
                                         <div class="p-2 sticky top-0 bg-white border-b border-slate-50">
-                                            <input type="text" id="wrongThingSearch" placeholder="Search history..."
+                                            <input type="text" id="wrongThingSearch" placeholder="इतिहास शोधा..."
                                                 class="w-full p-2 text-xs bg-slate-50 rounded-lg border-none outline-none focus:ring-1 focus:ring-blue-500">
                                         </div>
                                         <div id="wrongThingOptions" class="py-1">
@@ -656,24 +667,24 @@
                             </div>
                             <div>
                                 <label for="decisionInput"
-                                    class="block text-xs font-bold text-slate-600 uppercase mb-1.5">Right
-                                    Decision</label>
+                                    class="block text-xs font-bold text-slate-600 uppercase mb-1.5">योग्य निर्णय /
+                                    दृष्टीकोन</label>
                                 <textarea id="decisionInput" required
-                                    placeholder="What is the correct perspective/action?"
+                                    placeholder="योग्य दृष्टीकोन / कृती काय असायला हवी?"
                                     class="w-full rounded-xl border-slate-200 bg-slate-50 p-3 border h-32 resize-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"></textarea>
                             </div>
                             <button type="submit" id="decisionSubmitBtn"
-                                class="w-full bg-blue-600 text-white py-4 rounded-xl hover:bg-blue-700 font-bold shadow-lg transition-all hover:-translate-y-1 active:scale-95 mt-2">Save
-                                Decision</button>
+                                class="w-full bg-blue-600 text-white py-4 rounded-xl hover:bg-blue-700 font-bold shadow-lg transition-all hover:-translate-y-1 active:scale-95 mt-2">निर्णय
+                                जतन करा</button>
                         </form>
                     </div>
                 </div>
                 <div class="lg:col-span-7">
                     <div class="bg-white rounded-3xl shadow-xl border border-slate-100 overflow-hidden">
                         <div class="p-6 border-b border-slate-50 flex justify-between items-center">
-                            <span class="font-bold text-slate-800">Decision History</span>
+                            <span class="font-bold text-slate-800">निर्णय सूची</span>
                             <div class="relative w-48">
-                                <input type="text" id="searchDecisionLogs" placeholder="Search logs..."
+                                <input type="text" id="searchDecisionLogs" placeholder="शोधा..."
                                     class="w-full pl-8 pr-3 py-1.5 text-xs bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-200">
                                 <svg class="w-3.5 h-3.5 text-slate-400 absolute left-2.5 top-2" fill="none"
                                     stroke="currentColor" viewBox="0 0 24 24">
@@ -686,8 +697,8 @@
                             <table class="w-full text-left">
                                 <tbody id="decisionTableBody" class="divide-y divide-slate-50"></tbody>
                             </table>
-                            <div id="decisionEmpty" class="hidden p-20 text-center text-slate-600 italic">No decisions
-                                logged yet.</div>
+                            <div id="decisionEmpty" class="hidden p-20 text-center text-slate-600 italic">अद्याप कोणताही
+                                निर्णय नोंदवला नाही.</div>
                         </div>
                     </div>
                 </div>
@@ -697,45 +708,45 @@
         <!-- RESULTS PAGE -->
         <div id="page-results" class="page-content max-w-6xl mx-auto px-4 py-8">
             <header class="mb-8">
-                <h2 class="text-2xl font-extrabold tracking-tight text-slate-900 notranslate">Results & Change</h2>
-                <p class="text-slate-600 text-sm">Observing the internal shift after implementation</p>
+                <h2 class="text-2xl font-extrabold tracking-tight text-slate-900 notranslate">परिणाम आणि बदल</h2>
+                <p class="text-slate-600 text-sm">कृतीनंतर झालेले अंतर्गत बदल अनुभवणे</p>
             </header>
             <div class="grid lg:grid-cols-12 gap-8">
                 <div class="lg:col-span-5">
                     <div class="bg-white px-6 pt-6 pb-8 rounded-3xl shadow-xl border border-slate-100 h-fit">
                         <h2 class="text-lg font-bold mb-5 flex items-center gap-2"><span
-                                class="w-2 h-6 bg-emerald-500 rounded-full"></span> Log Outcome</h2>
+                                class="w-2 h-6 bg-emerald-500 rounded-full"></span> परिणाम नोंदवा</h2>
                         <form id="resultForm" class="space-y-4">
                             <input type="hidden" id="resultEditId">
                             <div>
                                 <label for="decisionSelector"
-                                    class="block text-xs font-bold text-slate-600 uppercase mb-1.5">Select Decision
-                                    Taken</label>
+                                    class="block text-xs font-bold text-slate-600 uppercase mb-1.5">घेतलेला निर्णय
+                                    निवडा</label>
                                 <select id="decisionSelector" required
                                     class="w-full rounded-xl border-slate-200 bg-slate-50 p-3 border font-medium text-sm focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none">
-                                    <option value="">-- Choose from Decisions --</option>
+                                    <option value="">-- निर्णयांमधून निवडा --</option>
                                 </select>
                             </div>
                             <div>
                                 <label for="resultInput"
-                                    class="block text-xs font-bold text-slate-600 uppercase mb-1.5">Result / Change
-                                    Observed</label>
+                                    class="block text-xs font-bold text-slate-600 uppercase mb-1.5">दिसून आलेला परिणाम /
+                                    बदल</label>
                                 <textarea id="resultInput" required
-                                    placeholder="What internal or external change did you feel after acting on the decision?"
+                                    placeholder="निर्णयावर कृती केल्यानंतर काय बदल जाणवले?"
                                     class="w-full rounded-xl border-slate-200 bg-slate-50 p-3 border h-32 resize-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none"></textarea>
                             </div>
                             <button type="submit" id="resultSubmitBtn"
-                                class="w-full bg-emerald-600 text-white py-4 rounded-xl hover:bg-emerald-700 font-bold shadow-lg transition-all hover:-translate-y-1 active:scale-95 mt-2">Save
-                                Result</button>
+                                class="w-full bg-emerald-600 text-white py-4 rounded-xl hover:bg-emerald-700 font-bold shadow-lg transition-all hover:-translate-y-1 active:scale-95 mt-2">परिणाम
+                                जतन करा</button>
                         </form>
                     </div>
                 </div>
                 <div class="lg:col-span-7">
                     <div class="bg-white rounded-3xl shadow-xl border border-slate-100 overflow-hidden">
                         <div class="p-6 border-b border-slate-50 flex justify-between items-center">
-                            <span class="font-bold text-slate-800">Transformation Log</span>
+                            <span class="font-bold text-slate-800">परिवर्तन प्रवास</span>
                             <div class="relative w-48">
-                                <input type="text" id="searchResultLogs" placeholder="Search logs..."
+                                <input type="text" id="searchResultLogs" placeholder="शोधा..."
                                     class="w-full pl-8 pr-3 py-1.5 text-xs bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-200">
                                 <svg class="w-3.5 h-3.5 text-slate-400 absolute left-2.5 top-2" fill="none"
                                     stroke="currentColor" viewBox="0 0 24 24">
@@ -748,8 +759,8 @@
                             <table class="w-full text-left">
                                 <tbody id="resultsTableBody" class="divide-y divide-slate-50"></tbody>
                             </table>
-                            <div id="resultsEmpty" class="hidden p-20 text-center text-slate-600 italic">No results
-                                documented yet.</div>
+                            <div id="resultsEmpty" class="hidden p-20 text-center text-slate-600 italic">अद्याप परिणाम
+                                नोंदवले नाहीत.</div>
                         </div>
                     </div>
                 </div>
@@ -764,7 +775,7 @@
     <script type="text/javascript">
         function googleTranslateElementInit() {
             new google.translate.TranslateElement({
-                pageLanguage: 'en',
+                pageLanguage: 'mr',
                 includedLanguages: 'en,hi,mr,gu,kn,ta',
                 layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
                 autoDisplay: false
@@ -783,6 +794,35 @@
         let wrongLogs = JSON.parse(localStorage.getItem(STORAGE_WRONG)) || [];
         let decisionLogs = JSON.parse(localStorage.getItem(STORAGE_DECISION)) || [];
         let resultLogs = JSON.parse(localStorage.getItem(STORAGE_RESULT)) || [];
+
+        // --- Read More / Truncate Logic ---
+        function getExpandableText(text, uidPrefix, limit = 100) {
+            if (!text) return '';
+            // Basic escaping to prevent XSS and ensure safe slicing
+            const safeText = text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+
+            if (safeText.length <= limit) return safeText;
+
+            const shortText = safeText.substring(0, limit) + '...';
+
+            return `<span id="short-${uidPrefix}">${shortText}</span><span id="full-${uidPrefix}" class="hidden">${safeText}</span><button onclick="toggleReadMore('${uidPrefix}')" id="btn-${uidPrefix}" class="text-blue-600 text-xs font-bold hover:underline ml-1 focus:outline-none">अधिक वाचा</button>`;
+        }
+
+        window.toggleReadMore = (uid) => {
+            const shortSpan = document.getElementById(`short-${uid}`);
+            const fullSpan = document.getElementById(`full-${uid}`);
+            const btn = document.getElementById(`btn-${uid}`);
+
+            if (shortSpan.classList.contains('hidden')) {
+                shortSpan.classList.remove('hidden');
+                fullSpan.classList.add('hidden');
+                btn.textContent = 'अधिक वाचा';
+            } else {
+                shortSpan.classList.add('hidden');
+                fullSpan.classList.remove('hidden');
+                btn.textContent = 'कमी करा';
+            }
+        };
 
         // --- Navigation Logic ---
         const navLinks = document.querySelectorAll('.nav-link');
@@ -873,7 +913,7 @@
                 if (!placeholder) {
                     const span = document.createElement('span');
                     span.className = 'multi-select-placeholder';
-                    span.textContent = 'Click to select defects...';
+                    span.textContent = 'स्वभाव दोष निवडा...';
                     doshTrigger.appendChild(span);
                 }
             } else {
@@ -935,7 +975,7 @@
             const selectedDosh = getSelectedDosh(); // Use custom dropdown function
 
             if (selectedDosh.length === 0) {
-                showToast("Please select at least one personality defect");
+                showToast("कृपया किमान एक स्वभाव दोष निवडा");
                 return;
             }
 
@@ -951,11 +991,11 @@
                 const index = wrongLogs.findIndex(l => l.id === editId);
                 if (index !== -1) wrongLogs[index] = data;
                 document.getElementById('wrongEditId').value = '';
-                document.getElementById('wrongSubmitBtn').textContent = 'Save Mistake';
-                showToast("Mistake updated");
+                document.getElementById('wrongSubmitBtn').textContent = 'चूक जतन करा';
+                showToast("चूक सुधारली");
             } else {
                 wrongLogs.push(data);
-                showToast("Mistake recorded");
+                showToast("चूक नोंदवली");
             }
 
             localStorage.setItem(STORAGE_WRONG, JSON.stringify(wrongLogs));
@@ -997,7 +1037,7 @@
 
             if (filteredLogs.length === 0) {
                 empty.classList.remove('hidden');
-                empty.textContent = searchTerm ? 'No matching records found.' : 'No entries yet.';
+                empty.textContent = searchTerm ? 'कोणतीही नोंद सापडली नाही.' : 'अद्याप काहीही नोंद नाही.';
                 return;
             }
 
@@ -1005,30 +1045,39 @@
             const displayLogs = showAll ? filteredLogs : filteredLogs.slice(0, 50);
             const fragment = document.createDocumentFragment();
 
+            let lastDate = null;
             displayLogs.forEach(log => {
+                // Add Date Header if date changes
+                if (log.Date !== lastDate) {
+                    const dateHeader = document.createElement('tr');
+                    dateHeader.className = "bg-slate-50/50";
+                    dateHeader.innerHTML = `<td colspan="3" class="px-6 py-2 text-[11px] font-bold text-slate-500 uppercase tracking-widest bg-slate-100/50 sticky top-0 backdrop-blur-sm shadow-sm">${log.Date}</td>`;
+                    fragment.appendChild(dateHeader);
+                    lastDate = log.Date;
+                }
+
                 const tr = document.createElement('tr');
-                tr.className = "hover:bg-slate-50 border-b border-slate-50";
+                tr.className = "hover:bg-slate-50 border-b border-slate-50 group";
 
                 // Handle both old single-value and new array format
                 const doshArray = Array.isArray(log.Dosh) ? log.Dosh : (log.Dosh ? [log.Dosh] : []);
                 const doshBadges = doshArray.length > 0
-                    ? doshArray.map(d => `<span class="inline-block bg-red-100 text-red-700 px-2 py-0.5 rounded-full text-[9px] font-bold mr-1 mb-1">${d}</span>`).join('')
+                    ? doshArray.map(d => `<span class="inline-block bg-red-100 text-red-700 px-2 py-0.5 rounded-full text-[9px] font-bold mr-1 mb-1 shadow-sm">${d}</span>`).join('')
                     : '<span class="text-slate-400 text-[10px]">Uncategorized</span>';
 
-                tr.innerHTML = `<td class="px-6 py-4 w-32">
-                        <div class="text-xs font-bold text-slate-600">${log.Date}</div>
-                        <div class="text-[10px] text-slate-600 font-medium">${log.Time || ''}</div>
+                tr.innerHTML = `<td class="px-2 md:px-6 py-3 md:py-4 w-16 md:w-20 align-top">
+                        <div class="text-xs font-bold text-slate-700 font-mono bg-slate-100 inline-block px-1.5 py-0.5 rounded">${log.Time || '--:--'}</div>
                     </td>
-                    <td class="px-6 py-4">
+                    <td class="px-2 md:px-6 py-3 md:py-4 align-top">
                         <div class="mb-2">${doshBadges}</div>
-                        <div class="text-sm text-slate-700 font-medium">${log.WrongThings}</div>
+                        <div class="text-sm text-slate-700 font-medium break-all whitespace-pre-wrap leading-relaxed">${getExpandableText(log.WrongThings, 'w-' + log.id)}</div>
                     </td>
-                    <td class="px-6 py-4 text-right w-24">
-                        <div class="flex justify-end gap-3">
-                            <button onclick="editEntry('wrong', '${log.id}')" class="text-slate-400 hover:text-blue-500 transition-colors">
+                    <td class="px-2 md:px-6 py-3 md:py-4 text-right w-16 md:w-24 align-top">
+                        <div class="flex justify-end gap-2 md:gap-3 opacity-0 group-hover:opacity-100 transition-opacity">
+                            <button onclick="editEntry('wrong', '${log.id}')" class="p-1.5 rounded-lg text-slate-400 hover:text-blue-600 hover:bg-blue-50 transition-all">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
                             </button>
-                            <button onclick="deleteEntry('wrong', '${log.id}')" class="text-slate-400 hover:text-red-500 transition-colors">✕</button>
+                            <button onclick="deleteEntry('wrong', '${log.id}')" class="p-1.5 rounded-lg text-slate-400 hover:text-red-600 hover:bg-red-50 transition-all">✕</button>
                         </div>
                     </td>`;
                 fragment.appendChild(tr);
@@ -1037,7 +1086,7 @@
             if (!showAll && wrongLogs.length > 50) {
                 const moreTr = document.createElement('tr');
                 moreTr.innerHTML = `<td colspan="3" class="px-6 py-4 text-center">
-                    <button onclick="renderWrong(true)" class="text-blue-600 text-sm font-bold hover:underline">Show ${wrongLogs.length - 50} more entries...</button>
+                    <button onclick="renderWrong(true)" class="text-blue-600 text-sm font-bold hover:underline">आणखी ${wrongLogs.length - 50} नोंदी दाखवा...</button>
                 </td>`;
                 fragment.appendChild(moreTr);
             }
@@ -1087,7 +1136,7 @@
             container.innerHTML = '';
 
             if (wrongLogs.length === 0) {
-                container.innerHTML = '<div class="p-3 text-xs text-slate-500 italic">No mistakes logged yet.</div>';
+                container.innerHTML = '<div class="p-3 text-xs text-slate-500 italic">अजून कोणतीही चूक नोंदवली नाही.</div>';
                 return;
             }
 
@@ -1124,11 +1173,11 @@
                 const index = decisionLogs.findIndex(l => l.id === editId);
                 if (index !== -1) decisionLogs[index] = data;
                 document.getElementById('decisionEditId').value = '';
-                document.getElementById('decisionSubmitBtn').textContent = 'Save Decision';
-                showToast("Decision updated");
+                document.getElementById('decisionSubmitBtn').textContent = 'निर्णय जतन करा';
+                showToast("निर्णय सुधारला");
             } else {
                 decisionLogs.push(data);
-                showToast("Decision logged");
+                showToast("निर्णय नोंदवला");
             }
 
             localStorage.setItem(STORAGE_DECISION, JSON.stringify(decisionLogs));
@@ -1155,7 +1204,7 @@
 
             if (filteredLogs.length === 0) {
                 empty.classList.remove('hidden');
-                empty.textContent = searchTerm ? 'No matching decisions found.' : 'No decisions logged yet.';
+                empty.textContent = searchTerm ? 'कोणताही निर्णय सापडला नाही.' : 'अद्याप कोणताही निर्णय नोंदवला नाही.';
                 return;
             }
 
@@ -1163,20 +1212,31 @@
             const displayLogs = showAll ? filteredLogs : filteredLogs.slice(0, 50);
             const fragment = document.createDocumentFragment();
 
+            let lastDate = null;
             displayLogs.forEach(log => {
+                if (log.date !== lastDate) {
+                    const dateHeader = document.createElement('tr');
+                    dateHeader.className = "bg-slate-50/50";
+                    dateHeader.innerHTML = `<td colspan="2" class="px-6 py-2 text-[11px] font-bold text-slate-500 uppercase tracking-widest bg-slate-100/50Sticky top-0">${log.date || 'तारीख उपलब्ध नाही'}</td>`;
+                    fragment.appendChild(dateHeader);
+                    lastDate = log.date;
+                }
+
                 const tr = document.createElement('tr');
-                tr.className = "hover:bg-slate-50 border-b border-slate-50";
-                tr.innerHTML = `<td class="px-6 py-4">
-                    <div class="text-[10px] text-red-600 uppercase font-bold">Mistake:</div>
-                    <div class="text-xs text-slate-600 italic mb-2">"${log.wrongText}"</div>
-                    <div class="text-sm font-medium text-slate-800">${log.decision}</div>
+                tr.className = "hover:bg-slate-50 border-b border-slate-50 group";
+                tr.innerHTML = `<td class="px-2 md:px-6 py-3 md:py-4 align-top">
+                    <div class="text-[10px] text-red-600 uppercase font-bold mb-1">मूळ चूक:</div>
+                    <div class="text-xs text-slate-600 italic mb-3 pl-3 border-l-2 border-red-100 break-all whitespace-pre-wrap leading-relaxed">"${log.wrongText}"</div>
+                    
+                    <div class="text-[10px] text-blue-600 uppercase font-bold mb-1">योग्य निर्णय:</div>
+                    <div class="text-sm font-medium text-slate-800 break-all whitespace-pre-wrap leading-relaxed">${getExpandableText(log.decision, 'd-' + log.id)}</div>
                 </td>
-                <td class="px-6 py-4 text-right w-24">
-                    <div class="flex justify-end gap-3">
-                        <button onclick="editEntry('decision', '${log.id}')" class="text-slate-400 hover:text-blue-500 transition-colors">
+                <td class="px-2 md:px-6 py-3 md:py-4 text-right w-16 md:w-24 align-top">
+                    <div class="flex justify-end gap-2 md:gap-3 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <button onclick="editEntry('decision', '${log.id}')" class="p-1.5 rounded-lg text-slate-400 hover:text-blue-600 hover:bg-blue-50 transition-all">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
                         </button>
-                        <button onclick="deleteEntry('decision', '${log.id}')" class="text-slate-400 hover:text-red-500 transition-colors">✕</button>
+                        <button onclick="deleteEntry('decision', '${log.id}')" class="p-1.5 rounded-lg text-slate-400 hover:text-red-600 hover:bg-red-50 transition-all">✕</button>
                     </div>
                 </td>`;
                 fragment.appendChild(tr);
@@ -1185,7 +1245,7 @@
             if (!showAll && decisionLogs.length > 50) {
                 const moreTr = document.createElement('tr');
                 moreTr.innerHTML = `<td colspan="2" class="px-6 py-4 text-center">
-                    <button onclick="renderDecisions(true)" class="text-blue-600 text-sm font-bold hover:underline">Show all decisions...</button>
+                    <button onclick="renderDecisions(true)" class="text-blue-600 text-sm font-bold hover:underline">सर्व निर्णय दाखवा...</button>
                 </td>`;
                 fragment.appendChild(moreTr);
             }
@@ -1197,7 +1257,7 @@
         function populateDecisionSelector() {
             const sel = document.getElementById('decisionSelector');
             const val = sel.value;
-            sel.innerHTML = '<option value="">-- Choose from Decisions --</option>';
+            sel.innerHTML = '<option value="">-- निर्णयांमधून निवडा --</option>';
             decisionLogs.forEach(log => {
                 const opt = document.createElement('option');
                 opt.value = log.id;
@@ -1224,11 +1284,11 @@
                 const index = resultLogs.findIndex(l => l.id === editId);
                 if (index !== -1) resultLogs[index] = data;
                 document.getElementById('resultEditId').value = '';
-                document.getElementById('resultSubmitBtn').textContent = 'Save Result';
-                showToast("Result updated");
+                document.getElementById('resultSubmitBtn').textContent = 'परिणाम जतन करा';
+                showToast("परिणाम अपडेट केला");
             } else {
                 resultLogs.push(data);
-                showToast("Result recorded");
+                showToast("परिणाम नोंदवला");
             }
 
             localStorage.setItem(STORAGE_RESULT, JSON.stringify(resultLogs));
@@ -1255,7 +1315,7 @@
 
             if (filteredLogs.length === 0) {
                 empty.classList.remove('hidden');
-                empty.textContent = searchTerm ? 'No matching results found.' : 'No results documented yet.';
+                empty.textContent = searchTerm ? 'कोणतेही परिणाम सापडले नाहीत.' : 'अद्याप परिणाम नोंदवले नाहीत.';
                 return;
             }
 
@@ -1263,20 +1323,31 @@
             const displayLogs = showAll ? filteredLogs : filteredLogs.slice(0, 50);
             const fragment = document.createDocumentFragment();
 
+            let lastDate = null;
             displayLogs.forEach(log => {
+                if (log.date !== lastDate) {
+                    const dateHeader = document.createElement('tr');
+                    dateHeader.className = "bg-slate-50/50";
+                    dateHeader.innerHTML = `<td colspan="2" class="px-6 py-2 text-[11px] font-bold text-slate-500 uppercase tracking-widest bg-slate-100/50 sticky top-0">${log.date || 'तारीख उपलब्ध नाही'}</td>`;
+                    fragment.appendChild(dateHeader);
+                    lastDate = log.date;
+                }
+
                 const tr = document.createElement('tr');
-                tr.className = "hover:bg-slate-50 border-b border-slate-50";
-                tr.innerHTML = `<td class="px-6 py-4">
-                    <div class="text-[10px] text-blue-600 uppercase font-bold">Decision:</div>
-                    <div class="text-xs text-slate-600 italic mb-2">"${log.decisionText}"</div>
-                    <div class="text-sm font-bold text-emerald-700">${log.result}</div>
+                tr.className = "hover:bg-slate-50 border-b border-slate-50 group";
+                tr.innerHTML = `<td class="px-2 md:px-6 py-3 md:py-4 align-top">
+                    <div class="text-[10px] text-blue-600 uppercase font-bold mb-1">मूळ निर्णय:</div>
+                    <div class="text-xs text-slate-600 italic mb-3 pl-3 border-l-2 border-blue-100 break-all whitespace-pre-wrap leading-relaxed">"${log.decisionText}"</div>
+                    
+                    <div class="text-[10px] text-emerald-600 uppercase font-bold mb-1">परिणाम / बदल:</div>
+                    <div class="text-sm font-bold text-emerald-700 break-all whitespace-pre-wrap leading-relaxed">${getExpandableText(log.result, 'r-' + log.id)}</div>
                 </td>
-                <td class="px-6 py-4 text-right w-24">
-                    <div class="flex justify-end gap-3">
-                        <button onclick="editEntry('result', '${log.id}')" class="text-slate-400 hover:text-blue-500 transition-colors">
+                <td class="px-2 md:px-6 py-3 md:py-4 text-right w-16 md:w-24 align-top">
+                    <div class="flex justify-end gap-2 md:gap-3 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <button onclick="editEntry('result', '${log.id}')" class="p-1.5 rounded-lg text-slate-400 hover:text-blue-600 hover:bg-blue-50 transition-all">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
                         </button>
-                        <button onclick="deleteEntry('result', '${log.id}')" class="text-slate-400 hover:text-red-500 transition-colors">✕</button>
+                        <button onclick="deleteEntry('result', '${log.id}')" class="p-1.5 rounded-lg text-slate-400 hover:text-red-600 hover:bg-red-50 transition-all">✕</button>
                     </div>
                 </td>`;
                 fragment.appendChild(tr);
@@ -1285,7 +1356,7 @@
             if (!showAll && resultLogs.length > 50) {
                 const moreTr = document.createElement('tr');
                 moreTr.innerHTML = `<td colspan="2" class="px-6 py-4 text-center">
-                    <button onclick="renderResults(true)" class="text-blue-600 text-sm font-bold hover:underline">Show all results...</button>
+                    <button onclick="renderResults(true)" class="text-blue-600 text-sm font-bold hover:underline">सर्व परिणाम दाखवा...</button>
                 </td>`;
                 fragment.appendChild(moreTr);
             }
@@ -1306,7 +1377,7 @@
                 setSelectedDosh(doshArray); // Use custom dropdown function
 
                 document.getElementById('wrongThingsInput').value = log.WrongThings;
-                document.getElementById('wrongSubmitBtn').textContent = 'Update Mistake';
+                document.getElementById('wrongSubmitBtn').textContent = 'चूक अपडेट करा';
                 document.getElementById('page-wrong').scrollIntoView({ behavior: 'smooth' });
             } else if (type === 'decision') {
                 const log = decisionLogs.find(l => l.id === id);
@@ -1325,7 +1396,7 @@
                 }
 
                 document.getElementById('decisionInput').value = log.decision;
-                document.getElementById('decisionSubmitBtn').textContent = 'Update Decision';
+                document.getElementById('decisionSubmitBtn').textContent = 'निर्णय अपडेट करा';
                 document.getElementById('page-decision').scrollIntoView({ behavior: 'smooth' });
             } else if (type === 'result') {
                 const log = resultLogs.find(l => l.id === id);
@@ -1334,13 +1405,13 @@
                 populateDecisionSelector();
                 document.getElementById('decisionSelector').value = log.decisionId;
                 document.getElementById('resultInput').value = log.result;
-                document.getElementById('resultSubmitBtn').textContent = 'Update Result';
+                document.getElementById('resultSubmitBtn').textContent = 'परिणाम अपडेट करा';
                 document.getElementById('page-results').scrollIntoView({ behavior: 'smooth' });
             }
         };
 
         window.deleteEntry = (type, id) => {
-            if (!confirm("Delete this entry?")) return;
+            if (!confirm("तुम्हाला खात्री आहे, ही नोंद डिलीट करायची आहे?")) return;
             if (type === 'wrong') {
                 wrongLogs = wrongLogs.filter(l => l.id !== id);
                 localStorage.setItem(STORAGE_WRONG, JSON.stringify(wrongLogs));
@@ -1369,7 +1440,7 @@
 
         document.getElementById('exportAllBtn').onclick = async () => {
             if (typeof XLSX === 'undefined') {
-                showToast("Loading Export Engine...");
+                showToast("एक्सपोर्ट इंजिन लोड होत आहे...");
                 try {
                     await new Promise((resolve, reject) => {
                         const script = document.createElement('script');
@@ -1379,7 +1450,7 @@
                         document.head.appendChild(script);
                     });
                 } catch (err) {
-                    showToast("Failed to load export library.");
+                    showToast("एक्सपोर्ट लायब्ररी लोड करण्यास अक्षम.");
                     return;
                 }
             }
@@ -1465,7 +1536,7 @@
 
             // Download the file
             XLSX.writeFile(wb, "Sanatan_Sanstha_Audit_Complete.xlsx");
-            showToast("Complete data exported to Excel!");
+            showToast("सर्व माहिती एक्सेल मध्ये एक्सपोर्ट झाली!");
         };
 
         const modal = document.getElementById('settingsModal');
@@ -1479,7 +1550,7 @@
                 googleSelect.value = e.target.value;
                 googleSelect.dispatchEvent(new Event('change', { bubbles: true }));
                 localStorage.setItem(LANG_KEY, e.target.value);
-                showToast("Language updated");
+                showToast("भाषा बदलली");
                 modal.classList.add('hidden');
             }
         };
