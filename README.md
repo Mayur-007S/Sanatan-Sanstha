@@ -7,8 +7,8 @@
 ![License](https://img.shields.io/badge/license-Free-orange)
 ![Privacy](https://img.shields.io/badge/privacy-100%25%20Local-red)
 
-**🌐 Live Website:** [https://sanatandoshsarni.tiiny.site/](https://sanatandoshsarni.tiiny.site/)
-
+**🌐 Live Website:** [https://sanatanswabhavdoshsarni.netlify.app/](https://sanatanswabhavdoshsarni.netlify.app/) 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/de1737bb-f018-4228-ae11-84f6de5f7023/deploy-status)](https://app.netlify.com/projects/sanatanswabhavdoshsarni/deploys)
 ---
 
 ## 📖 Quick Links
@@ -41,7 +41,7 @@ This app helps you become more **self-aware**, make **better decisions**, and **
 ## ⚡ Quick Start
 
 ### 1. Open the App
-- **Online:** Visit [https://sanatandoshsarni.tiiny.site/](https://sanatandoshsarni.tiiny.site/)
+- **Online:** Visit [https://sanatanswabhavdoshsarni.netlify.app/](https://sanatanswabhavdoshsarni.netlify.app/)
 - **Offline:** Double-click `index.html`
 - Works on any device (phone, tablet, computer)
 
