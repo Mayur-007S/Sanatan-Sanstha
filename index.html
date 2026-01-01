@@ -1758,6 +1758,15 @@
 
         // Initialize
         tryAutoplay();
+
+        // Auto-pause when tab is hidden, auto-resume when visible
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                if (isPlaying) audio.pause();
+            } else {
+                if (isPlaying) audio.play().catch(e => console.log("Resume failed:", e));
+            }
+        });
     </script>
 </body>
 
