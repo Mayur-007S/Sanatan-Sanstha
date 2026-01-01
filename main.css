@@ -1,0 +1,206 @@
+body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background-color: #efefef;
+}
+
+.nav-primary {
+    background-color: #FFFFCB;
+}
+
+.nav-secondary {
+    background-color: #D3EFFB;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+.hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+/* Google Translate Hiding Elements */
+.goog-te-banner-frame.skiptranslate,
+.goog-te-gadget-icon,
+.goog-te-spinner-pos {
+    display: none !important;
+}
+
+body {
+    top: 0px !important;
+}
+
+#google_translate_element {
+    height: 0;
+    overflow: hidden;
+    position: absolute;
+}
+
+.modal-overlay {
+    background-color: rgba(15, 23, 42, 0.4);
+    backdrop-filter: blur(4px);
+}
+
+.notranslate {
+    translate: no;
+}
+
+.page-content {
+    display: none;
+}
+
+.page-content.active {
+    display: block;
+}
+
+.nav-link.active-tab {
+    border-bottom: 3px solid #b91c1c;
+    color: #b91c1c;
+    font-weight: 800;
+}
+
+/* Custom Multi-Select Dropdown */
+.multi-select-container {
+    position: relative;
+}
+
+.multi-select-trigger {
+    cursor: pointer;
+    min-height: 42px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 4px;
+    padding: 8px 12px;
+}
+
+.multi-select-placeholder {
+    color: #475569;
+    font-size: 14px;
+}
+
+.selected-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background-color: #fee2e2;
+    color: #991b1b;
+    padding: 4px 8px;
+    border-radius: 9999px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.selected-badge button {
+    background: none;
+    border: none;
+    color: #991b1b;
+    cursor: pointer;
+    padding: 0;
+    font-size: 14px;
+    line-height: 1;
+}
+
+.selected-badge button:hover {
+    color: #7f1d1d;
+}
+
+.multi-select-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    margin-top: 4px;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    z-index: 50;
+    max-height: 320px;
+    display: none;
+    flex-direction: column;
+}
+
+.multi-select-dropdown.active {
+    display: flex;
+}
+
+.multi-select-search {
+    padding: 12px;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.multi-select-search input {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 13px;
+    outline: none;
+}
+
+.multi-select-search input:focus {
+    border-color: #ef4444;
+    box-shadow: 0 0 0 3px rgba(254, 226, 226, 0.5);
+}
+
+.multi-select-options {
+    overflow-y: auto;
+    max-height: 240px;
+}
+
+.multi-select-group-label {
+    padding: 8px 12px;
+    font-size: 10px;
+    font-weight: 700;
+    color: #64748b;
+    text-transform: uppercase;
+    background-color: #f8fafc;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+.multi-select-option {
+    padding: 10px 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    transition: background-color 0.15s;
+}
+
+.multi-select-option:hover {
+    background-color: #f8fafc;
+}
+
+.multi-select-option input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    accent-color: #ef4444;
+}
+
+.multi-select-option label {
+    cursor: pointer;
+    flex: 1;
+    user-select: none;
+}
+
+.multi-select-option.hidden {
+    display: none;
+}
+
+/* Fix for tiiny.host banner blocking content on mobile */
+@media (max-width: 768px) {
+    body {
+        padding-bottom: 80px;
+    }
+
+    /* Move toast up slightly on mobile so it clears the banner */
+    #toast {
+        bottom: 70px !important;
+    }
+}

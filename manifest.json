@@ -1,0 +1,17 @@
+{
+  "name": "स्वभाव दोष सारणी - सनातन साधना",
+  "short_name": "सनातन साधना",
+  "description": "स्वभाव दोष निर्मूलन प्रक्रियेसाठी उपयुक्त साधन",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#efefef",
+  "theme_color": "#fc3400",
+  "icons": [
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/2913/2913520.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
