@@ -15,10 +15,10 @@
 
 | Document | Purpose | For Whom |
 |----------|---------|----------|
-| **[Quick Start Guide](QUICK_START_GUIDE.md)** | Get started in 5 minutes | New users |
-| **[Complete Documentation](DOCUMENTATION.md)** | Detailed feature guide | All users |
-| **[About Us](ABOUT.md)** | Philosophy & vision | Curious minds |
-| **[Feedback Guide](FEEDBACK_GUIDE.md)** | Report bugs, get help | Everyone |
+| **[Quick Start Guide](documentation/QUICK_START_GUIDE.md)** | Get started in 5 minutes | New users |
+| **[Complete Documentation](documentation/DOCUMENTATION.md)** | Detailed feature guide | All users |
+| **[About Us](documentation/ABOUT.md)** | Philosophy & vision | Curious minds |
+| **[Feedback Guide](documentation/FEEDBACK_GUIDE.md)** | Report bugs, get help | Everyone |
 
 ---
 
@@ -97,7 +97,7 @@ Organized into 4 categories:
 
 ## 📚 Documentation Overview
 
-### 🚀 [Quick Start Guide](QUICK_START_GUIDE.md)
+### 🚀 [Quick Start Guide](documentation/QUICK_START_GUIDE.md)
 **Perfect for:** First-time users
 
 **Contains:**
@@ -111,7 +111,7 @@ Organized into 4 categories:
 
 ---
 
-### 📖 [Complete Documentation](DOCUMENTATION.md)
+### 📖 [Complete Documentation](documentation/DOCUMENTATION.md)
 **Perfect for:** Users who want to master the app
 
 **Contains:**
@@ -126,7 +126,7 @@ Organized into 4 categories:
 
 ---
 
-### 🙏 [About Us](ABOUT.md)
+### 🙏 [About Us](documentation/ABOUT.md)
 **Perfect for:** Those curious about the philosophy
 
 **Contains:**
@@ -141,7 +141,7 @@ Organized into 4 categories:
 
 ---
 
-### 🆘 [Feedback Guide](FEEDBACK_GUIDE.md)
+### 🆘 [Feedback Guide](documentation/FEEDBACK_GUIDE.md)
 **Perfect for:** Anyone needing help or wanting to contribute
 
 **Contains:**
@@ -225,24 +225,26 @@ Sanatan Sanstha/
 │
 ├── index.html                  # Main application file
 ├── README.md                   # This file (overview)
-├── QUICK_START_GUIDE.md        # 5-minute tutorial
-├── DOCUMENTATION.md            # Complete feature guide
-├── ABOUT.md                    # Philosophy & vision
-└── FEEDBACK_GUIDE.md           # Help & support
+├── assets/                     # CSS, Audio, etc.
+└── documentation/              # Guides & Documentation
+    ├── QUICK_START_GUIDE.md    # 5-minute tutorial
+    ├── DOCUMENTATION.md        # Complete feature guide
+    ├── ABOUT.md                # Philosophy & vision
+    └── FEEDBACK_GUIDE.md       # Help & support
 ```
 
 ---
 
 ## 🚀 Getting Started Checklist
 
-- [ ] Read the [Quick Start Guide](QUICK_START_GUIDE.md)
+- [ ] Read the [Quick Start Guide](documentation/QUICK_START_GUIDE.md)
 - [ ] Open `index.html` in your browser
 - [ ] Log your first mistake
 - [ ] Write your first right decision
 - [ ] Change language (if needed)
 - [ ] Export data to Excel (for backup)
 - [ ] Bookmark this page for easy access
-- [ ] Read [Complete Documentation](DOCUMENTATION.md) when you have time
+- [ ] Read [Complete Documentation](documentation/DOCUMENTATION.md) when you have time
 
 ---
 
@@ -275,7 +277,7 @@ Sanatan Sanstha/
 
 ### Still Stuck?
 📧 **Email:** mayurmyana111@gmail.com  
-📖 **Read:** [Feedback Guide](FEEDBACK_GUIDE.md)  
+📖 **Read:** [Feedback Guide](documentation/FEEDBACK_GUIDE.md)  
 ⏱️ **Response Time:** 24-48 hours
 
 ---
@@ -284,7 +286,7 @@ Sanatan Sanstha/
 
 We welcome contributions! You can help by:
 
-- 🐛 **Reporting bugs** - Use the [Feedback Guide](FEEDBACK_GUIDE.md)
+- 🐛 **Reporting bugs** - Use the [Feedback Guide](documentation/FEEDBACK_GUIDE.md)
 - 💡 **Suggesting features** - Email your ideas
 - 🌍 **Translating** - Help add more languages
 - 📖 **Improving docs** - Suggest documentation improvements
@@ -324,6 +326,12 @@ We welcome contributions! You can help by:
 
 ---
 
+## 👨‍💻 For Developers & Agents
+- **[Agent Guidance](documentation/AGENT_GUIDANCE.md)** - Technical constraints and workflow rules.
+- **[Style Guide](docs/style.md)** - Design tokens and color palettes.
+
+---
+
 ## 📞 Contact
 
 **Developer:** Mayur Myana  
@@ -351,10 +359,10 @@ We welcome contributions! You can help by:
 
 ## 📖 Start Reading
 
-**New User?** → [Quick Start Guide](QUICK_START_GUIDE.md)  
-**Want Details?** → [Complete Documentation](DOCUMENTATION.md)  
-**Curious About Philosophy?** → [About Us](ABOUT.md)  
-**Need Help?** → [Feedback Guide](FEEDBACK_GUIDE.md)
+**New User?** → [Quick Start Guide](documentation/QUICK_START_GUIDE.md)  
+**Want Details?** → [Complete Documentation](documentation/DOCUMENTATION.md)  
+**Curious About Philosophy?** → [About Us](documentation/ABOUT.md)  
+**Need Help?** → [Feedback Guide](documentation/FEEDBACK_GUIDE.md)
 
 **Ready to begin?** Open `index.html` and start your journey! 🚀
 

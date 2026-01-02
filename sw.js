@@ -1,10 +1,10 @@
-const CACHE_NAME = 'sanatan-sadhan-v2';
+const CACHE_NAME = 'sanatan-sadhan-v3';
 const ASSETS = [
     './',
     './index.html',
-    './main.css',
+    './assets/css/main.css',
     './manifest.json',
-    './Datta_T.mp3',
+    './assets/audio/Datta_T.mp3',
     'https://cdn.tailwindcss.com',
     'https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap'
 ];
