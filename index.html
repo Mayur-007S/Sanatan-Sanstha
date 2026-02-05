@@ -411,23 +411,6 @@
                                         </div>
 
                                         <div class="multi-select-options" id="doshOptions">
-                                            <div class="multi-select-group-label">षड्रिपू
-                                            </div>
-                                            <div class="multi-select-option" data-value="Desire (Kama)"
-                                                data-group="shadripu">
-                                                <input type="checkbox" id="dosh_desire" value="काम">
-                                                <label for="dosh_desire">काम</label>
-                                            </div>
-                                            <div class="multi-select-option" data-value="Anger (Krodha)"
-                                                data-group="shadripu">
-                                                <input type="checkbox" id="dosh_anger" value="क्रोध / राग">
-                                                <label for="dosh_anger">क्रोध / राग</label>
-                                            </div>
-                                            <div class="multi-select-option" data-value="Greed (Lobha)"
-                                                data-group="shadripu">
-                                                <input type="checkbox" id="dosh_greed" value="लोभ">
-                                                <label for="dosh_greed">लोभ</label>
-                                            </div>
                                             <div class="multi-select-option" data-value="Attachment (Moha)"
                                                 data-group="shadripu">
                                                 <input type="checkbox" id="dosh_attachment" value="मोह">
@@ -1443,13 +1426,56 @@
 
         // All available Dosh options (from your multi-select dropdown)
         const allDoshOptions = [
-            'काम', 'क्रोध / राग', 'लोभ', 'मोह', 'मद / ताठा', 'मत्सर / द्वेष',
-            'शीघ्रकोपीपणा', 'चिडखोरपणा', 'भांडखोरपणा', 'विध्वंसकवृत्ती', 'दुसऱ्याला तुच्छ लेखणे', 'इतरांच्या चुका शोधणे', 'टीका करणे',
-            'अहंकार / गर्व', 'भावविवशता', 'भीती', 'खोटे बोलणे / अप्रामाणिकपणा', 'संशयीवृत्ती', 'कृतघ्नपणा', 'पश्चात्ताप न होणे', 'गांभीर्याचा अभाव', 'नियोजनाचा अभाव', 'विसरभोळेपणा',
-            'आळस', 'घाईघाईने करणे / उतावळेपणा', 'निष्काळजीपणा', 'बेजबाबदारपणा', 'अवज्ञा करणे', 'विनाकारण बोलणे', 'संकुचितवृत्ती', 'निर्णयक्षमतेचा अभाव', 'आत्मविश्वासाचा अभाव', 'उधळपट्टी', 'अव्यवस्थितपणा',
-            'अधिकारवाणीने बोलणे (Speaking authoritatively)', 'इतरांचे लक्ष वेधून घेणे (Attracting attention)', 'अपेक्षा करणे (Having expectations)', 'कर्तेपणा घेणे (Taking doership)', 'स्वतःला अधिक कळते असे वाटणे (Thinking one knows more)', 'चूक मान्य न करणे (Not admitting mistakes)', 'चिकाटीचा अभाव (Lack of perseverance)', 'एकलकोंडेपणा (Solitariness)', 'पूर्वग्रहदूषित असणे (Being prejudiced)', 'असमंजसपणा (Unreasonableness)', 'चातुर्य नसणे (Lack of tact)', 'निष्ठेने न वागणे (Unfaithfulness)', 'लाच घेणे किंवा देणे (Bribery)', 'दिखाऊपणा (Showiness)', 'मी म्हणतो तसेच झाले पाहिजे (Insisting on one\'s way)', 'तुलना करणे (Comparing)', 'कौतुकाची अपेक्षा करणे (Expecting praise)', 'मनाप्रमाणे वागणे (Self-willed behavior)',
-            'काळजी करणे (Worrying)', 'चिंतातुरता (Anxiety)', 'उध्दटपणा (Rudeness)', 'सहनशीलता नसणे (Lack of tolerance)', 'हट्टीपणा (Stubbornness)', 'स्वार्थीपणा (Selfishness)', 'नकारात्मक विचार (Negative thinking)', 'वर्चस्व गाजवणे (Dominating)', 'एकाग्रता नसणे (Lack of concentration)', 'लहरीपणा (Moodiness)', 'दुसऱ्यांना निरुत्साही करणे (Discouraging others)', 'न्युनगंड असणे (Inferiority complex)', 'सहानुभूति न वाटणे (Lack of empathy)', 'वक्तशीरपणाचा अभाव (Lack of punctuality)', 'सूडबुद्धी असणे (Vengefulness)', 'नीतीने न वागणे (Unethical behavior)', 'कंजूषपणा (Miserliness)', 'पक्षपातीपणा (Partiality)', 'अतिमहत्वाकांक्षी असणे (Over-ambitious)', 'मनोराज्यात रमणे (Daydreaming)', 'दुसऱ्यांनी लक्ष द्यावे असे वाटणे (Seeking attention)', 'निराशावादी वृत्ती (Pessimistic attitude)', 'इतर'
+            'काळजी करणे', 'चिंतातुरता', 'दुसऱ्यांना निरुत्साही करणे', 'दुसऱ्यांवर टीका करणे', 'उद्धटपणा', 'सहनशीलता नसणे', 'चिडचिडेपणा', 'रागीटपणा', 'भांडखोरपणा', 'वर्चस्व गाजवणे',
+            'आक्रमक वृत्ती', 'सूडबुद्धी असणे', 'हिंसाचार वृत्ती', 'विध्वंसक वृत्ती', 'निर्दयपणा', 'क्रूरपणा अथवा शौर्य', 'एकाग्रता नसणे', 'विसराळूपणा', 'निर्णयक्षमता नसणे', 'पारख नसणे',
+            'उतावळेपणा', 'धांदरटपणा', 'निष्काळजीपणा', 'आळशीपणा', 'टापटीप नसणे', 'अव्यवस्थितपणा', 'नियोजनाचा अभाव', 'वक्तशीरपणाचा अभाव', 'पुढाकार न घेणे', 'नकारात्मक विचार',
+            'हट्टीपणा', 'आत्मकेंद्रितपणा (केवळ स्वतःचा विचार करणे)', 'स्वार्थीपणा', 'आपल्या वस्तू दुसऱ्यांना न देणे', 'कंजूसपणा', 'आत्मविश्वासाचा अभाव', 'मानसिक आधाराची जरुरी वाटणे', 'पडते घेणे', 'अनुयायी असणे', 'लाज वाटणे',
+            'भित्रेपणा', 'भावना आणि विचार मनातच ठेवणे', 'न्यूनगंड असणे', 'सहानुभूती न वाटणे', 'अडथळे आणणे', 'दान न करणे / आदरातिथ्य न करणे', 'कर्तव्याचे पालन न करणे / कामचुकारपणा', 'आज्ञापालन न करणे', 'विश्वासार्हता नसणे', 'असमंजसपणा',
+            'कृतघ्नपणा', 'पश्चात्ताप न होणे', 'चिकाटीचा अभाव', 'अकार्यक्षम असणे', 'महत्त्वाकांक्षा नसणे', 'विनोदबुद्धी नसणे', 'गंभीर स्वभाव', 'औपचारिकता', 'दुसऱ्यांविषयी काहीही न वाटणे', 'एकलकोंडेपणा',
+            'असंस्कृतपणा', 'भावनाप्रधान असणे', 'भावनाशिलता', 'चिकित्सक नसणे', 'चातुर्य नसणे', 'संदिग्धपणा', 'निराशावादी वृत्ती', 'लहरीपणा', 'तऱ्हेवाईकपणा', 'निराश होणे',
+            'अतिचिकित्सकपणा', 'पूर्वग्रहदूषित असणे', 'दुसऱ्यांना विनाकारण दोष देणे', 'स्वतःला विनाकारण दोष देणे', 'हेवा वाटणे', 'मत्सर वाटणे', 'संशयीपणा', 'मनातील गोष्टी मनातच ठेवणे', 'धाकधुक वाटणे', 'दुसऱ्यांनी आपल्याकडे लक्ष द्यावे असे वाटणे',
+            'स्तुतीप्रियता', 'संकुचितपणा', 'खोटे बोलणे', 'पक्षपातीपणा', 'अप्रामाणिकपणा', 'लाच घेणे किंवा देणे', 'निष्ठेने न वागणे', 'नीतीने न वागणे', 'अनावश्यक बोलणे', 'मनोराज्यात रमणे',
+            'उधळेपणा', 'गर्विष्ठपणा', 'घमेंडखोरपणा', 'दुसऱ्यांना तुच्छ लेखणे', 'नविन्याची आवड असणे', 'अतिमहत्त्वाकांक्षी असणे', 'अतिव्यवस्थितपणा',
+            'अधिकारवाणीने बोलणे', 'ईर्ष्या करणे', 'मत्सर वाटणे', 'इतरांचे लक्ष वेधून घेणे', 'गर्विष्ठपणा', 'इतरांना कमी लेखणे', 'अपेक्षा करणे', 'कर्तेपणा घेणे', 'तुलना करणे', 'स्वतःला अधिक कळते असे वाटणे', 'दिखाऊपणा', 'प्रतिमा जपणे', 'स्वीकारण्याची वृत्ती नसणे', 'स्वतःला महत्त्व मिळावे असे वाटणे', 'मनाप्रमाणे वागणे', 'विचारून न घेणे', 'स्वतःच्या मतावर ठाम राहणे', 'स्वकौतुकाची अपेक्षा करणे'
         ];
+
+        function populateDoshDropdown() {
+            const container = document.getElementById('doshOptions');
+            if (!container) return;
+            container.innerHTML = '';
+
+            const part1 = allDoshOptions.slice(0, 101);
+            const part2 = allDoshOptions.slice(101);
+
+            let globalIndex = 1;
+            const renderGroup = (label, options, prefix) => {
+                const labelDiv = document.createElement('div');
+                labelDiv.className = 'multi-select-group-label';
+                labelDiv.textContent = label;
+                container.appendChild(labelDiv);
+
+                options.forEach((opt, i) => {
+                    const id = `dosh_dyn_${prefix}_${i}`;
+                    const div = document.createElement('div');
+                    div.className = 'multi-select-option';
+                    div.dataset.value = opt;
+                    div.innerHTML = `<input type="checkbox" id="${id}" value="${opt}"><label for="${id}">${globalIndex}. ${opt}</label>`;
+                    container.appendChild(div);
+                    globalIndex++;
+                });
+            };
+
+            renderGroup('भाग १: स्वभावदोष (Personality Defects)', part1, 'p1');
+            renderGroup('भाग २: अहंचे पैलू (Aspects of Ego)', part2, 'p2');
+
+            // Re-bind listeners
+            document.querySelectorAll('.multi-select-option input[type="checkbox"]').forEach(cb => {
+                cb.onchange = () => {
+                    updateSelectedDosh();
+                    renderDoshBadges();
+                };
+            });
+        }
 
         function renderDoshLevelTable() {
             const tbody = document.getElementById('doshLevelTableBody');
@@ -1549,7 +1575,7 @@
         const doshTrigger = document.getElementById('doshTrigger');
         const doshDropdown = document.getElementById('doshDropdown');
         const doshSearch = document.getElementById('doshSearch');
-        const doshOptions = document.querySelectorAll('.multi-select-option input[type="checkbox"]');
+        const getDoshCheckboxes = () => document.querySelectorAll('#doshOptions input[type="checkbox"]');
         let selectedDoshValues = [];
 
         // Toggle dropdown
@@ -1581,8 +1607,8 @@
             });
         };
 
-        // Handle checkbox selection
-        doshOptions.forEach(checkbox => {
+        // Initial checkbox listeners (if any)
+        getDoshCheckboxes().forEach(checkbox => {
             checkbox.onchange = () => {
                 updateSelectedDosh();
                 renderDoshBadges();
@@ -1590,7 +1616,7 @@
         });
 
         function updateSelectedDosh() {
-            selectedDoshValues = Array.from(doshOptions)
+            selectedDoshValues = Array.from(getDoshCheckboxes())
                 .filter(cb => cb.checked)
                 .map(cb => cb.value);
         }
@@ -1627,7 +1653,7 @@
         }
 
         window.removeDosh = (value) => {
-            const checkbox = Array.from(doshOptions).find(cb => cb.value === value);
+            const checkbox = Array.from(getDoshCheckboxes()).find(cb => cb.value === value);
             if (checkbox) {
                 checkbox.checked = false;
                 updateSelectedDosh();
@@ -1641,12 +1667,13 @@
 
         function setSelectedDosh(values) {
             // Uncheck all first
-            doshOptions.forEach(cb => cb.checked = false);
+            getDoshCheckboxes().forEach(cb => cb.checked = false);
 
             // Check the selected ones
             const valuesArray = Array.isArray(values) ? values : (values ? [values] : []);
+            const checkboxes = getDoshCheckboxes();
             valuesArray.forEach(value => {
-                const checkbox = Array.from(doshOptions).find(cb => cb.value === value);
+                const checkbox = Array.from(checkboxes).find(cb => cb.value === value);
                 if (checkbox) checkbox.checked = true;
             });
 
@@ -1655,7 +1682,7 @@
         }
 
         function clearDoshSelection() {
-            doshOptions.forEach(cb => cb.checked = false);
+            getDoshCheckboxes().forEach(cb => cb.checked = false);
             selectedDoshValues = [];
             renderDoshBadges();
         }
@@ -2701,6 +2728,9 @@
             const now = new Date();
             document.getElementById('wrongDateInput').valueAsDate = now;
             document.getElementById('wrongTimeInput').value = now.toTimeString().slice(0, 5);
+
+            // Populate the multi-select dropdown dynamically
+            populateDoshDropdown();
 
             // Initial render for active page only to improve TTI
             renderWrong();
